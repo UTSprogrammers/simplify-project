@@ -1,0 +1,24 @@
+{
+  "name": "simplify-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildcss": "npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UTSprogrammers/simplify-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UTSprogrammers/simplify-project/issues"
+  },
+  "homepage": "https://github.com/UTSprogrammers/simplify-project#readme",
+  "dependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
