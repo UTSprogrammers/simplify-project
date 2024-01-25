@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create An Account</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre&display=swap');
+
+        h1 {
+            font-family: 'Abhaya Libre', serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="container">
+                    <h2 class="mb-4">Create an Account</h2>
+                    <p class="text-muted">Join us and explore a world of productivity!</p>
+
+                    <form class="row">
+                        <div class="form-group col">
+                            <label for="firstName">First Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group col">
+                            <label for="lastName">Last Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control" id="age" placeholder="Age">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Enter Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Enter Username" required>
+                        </div>
+
+                        <div class="form-group col">
+                            <label for="password">Create Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Create Password"
+                                required>
+                        </div>
+
+                        <div class="form-group col">
+                            <label for="confirmPassword">Re-Enter Password</label>
+                            <input type="password" class="form-control" id="confirmPassword"
+                                placeholder="Re-Enter Password" required>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-block">Create an Account</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 offset-2">
+                <img style="width: 100%; height: 100%" src="https://via.placeholder.com/1171x1080" />
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
