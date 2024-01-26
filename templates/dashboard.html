@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %}Dashboard | Simplify{% endblock title %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400;600;700;800&display=swap" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="flex flex-col h-screen bg-gray-100">
+
+            <!-- Navigation top -->
+            <div class="bg-primary-light text-white shadow w-full p-2 flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="flex flex-col justify-center items-center">
+                        <a href="{{ url_for('dashboard') }}">
+                            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Logo" class="h-20 w-20 ml-4">
+                        </a>
+                    </div>
+                    <div class="md:hidden flex items-center"> <!-- Se muestra solo en dispositivos pequeños -->
+                        <button id="menuBtn">
+                            <i class="fas fa-bars text-gray-500 text-lg"></i> <!-- Ícono de menú -->
+                        </button>
+                    </div>
+                </div>
+    
+                <!-- Ícono de Notificación y Perfil -->
+                <div class="space-x-5 mr-4">
+                    <button>
+                        <i class="fas fa-bell text-gray-500 text-lg"></i>
+                    </button>
+                    <!-- Botón de Perfil -->
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="85" height="85" viewBox="0 0 85 85" fill="none" class='h-20 w-20'>
+                            <circle cx="42.5" cy="42.5" r="26.5" fill="#9C6A4D"/>
+                            <path d="M42.5 30C38.6708 30 35.5556 32.9513 35.5556 36.5789C35.5556 40.2066 38.6708 43.1579 42.5 43.1579C46.3292 43.1579 49.4444 40.2066 49.4444 36.5789C49.4444 32.9513 46.3292 30 42.5 30ZM42.5 40.5263C40.2028 40.5263 38.3333 38.7553 38.3333 36.5789C38.3333 34.4026 40.2028 32.6316 42.5 32.6316C44.7972 32.6316 46.6667 34.4026 46.6667 36.5789C46.6667 38.7553 44.7972 40.5263 42.5 40.5263ZM55 55V53.6842C55 48.6066 50.6375 44.4737 45.2778 44.4737H39.7222C34.3611 44.4737 30 48.6066 30 53.6842V55H32.7778V53.6842C32.7778 50.0566 35.8931 47.1053 39.7222 47.1053H45.2778C49.1069 47.1053 52.2222 50.0566 52.2222 53.6842V55H55Z" fill="#F4F1E8"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+    
+            <!-- Navigation side -->
+            <div class="flex-1 flex flex-wrap">
+                <!-- List Items -->
+                <div class="p-2 bg-primary-light w-full md:w-60 flex-col md:flex hidden" id="sideNav">
+                    <nav>
+                        <a class="block text-third-light py-2.5 px-4 my-4 rounded transition duration-200 hover:text-white hover:bg-secondary-light" href="{{ url_for('dashboard') }}">
+                            <div class='flex flex-row items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="25" viewBox="0 0 29 25" class='h-6 w-5'>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M29 11.5385L14.5 0L0 11.5385H3.53025V25H25.4696V11.5385H29Z" fill="#525252"/>
+                                </svg>
+                                <p class='ml-2'>Dashboard</p>
+                            </div>
+                        </a>
+                        <a class="block text-third-light py-2.5 px-4 my-4 rounded transition duration-200 hover:text-white hover:bg-secondary-light" href="{{ url_for('timer') }}">
+                            <div class='flex flex-row items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="33" viewBox="0 0 29 33" fill="none" class='h-6 w-5'>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.5406 6.15443C21.8785 5.70868 21.178 5.31641 20.4451 4.98375L21.4069 2.0858C21.5808 1.56163 21.2976 0.993519 20.7744 0.816892L18.5104 0.052706C17.9871 -0.123921 17.4219 0.15782 17.2479 0.681992L16.2121 3.80295C15.6506 3.73634 15.0793 3.70208 14.5 3.70208C6.49187 3.70208 0 10.2491 0 18.3252C0 26.4014 6.49187 32.9484 14.5 32.9484C22.5081 32.9484 29 26.4014 29 18.3252C29 14.4183 27.4807 10.8692 25.0055 8.24608L25.8101 7.23554C26.1542 6.80349 26.0851 6.17148 25.6559 5.8239L24.699 5.04897C24.2698 4.70139 23.643 4.76987 23.299 5.20192L22.5406 6.15443ZM14.5 28.9484C20.2672 28.9484 25 24.2242 25 18.3252C25 12.4263 20.2672 7.70208 14.5 7.70208C8.73284 7.70208 4 12.4263 4 18.3252C4 24.2242 8.73284 28.9484 14.5 28.9484ZM16.1111 18.3254C16.1111 19.2228 15.3898 19.9502 14.5 19.9502C13.6102 19.9502 12.8889 19.2228 12.8889 18.3254C12.8889 17.4281 13.6102 16.7006 14.5 16.7006C14.6012 16.7006 14.7002 16.71 14.7962 16.728L18.2067 9.99235C18.3678 9.67426 18.7553 9.54872 19.0723 9.71196C19.3893 9.8752 19.5157 10.2654 19.3546 10.5835L15.8687 17.4679C16.0224 17.7168 16.1111 18.0107 16.1111 18.3254Z" fill="#525252"/>
+                                </svg>
+                                <p class='ml-2'>Timer</p>
+                            </div>
+                        </a>
+                        <a class="block text-third-light py-2.5 px-4 my-4 rounded transition duration-200 hover:text-white hover:bg-secondary-light" href="{{ url_for('timetable') }}">
+                            <div class='flex flex-row items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="32" viewBox="0 0 29 32" fill="none" class='h-6 w-5'>
+                                    <rect x="1.5" y="4.5769" width="26" height="25.9231" rx="3.5" stroke="#525252" stroke-width="3"/>
+                                    <rect y="3.0769" width="29" height="9.84615" rx="4.92308" fill="#525252"/>
+                                    <rect x="4.93604" width="4.93617" height="9.84615" rx="2.46809" fill="#525252"/>
+                                    <rect x="19.1277" width="4.93617" height="9.84615" rx="2.46809" fill="#525252"/>
+                                    <rect x="8.63843" y="14.1538" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="12.9573" y="14.1538" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="17.2766" y="14.1538" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="21.5957" y="14.1538" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="4.31934" y="17.8462" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="8.63843" y="17.8462" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="12.9573" y="17.8462" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="17.2766" y="17.8462" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="21.5957" y="17.8462" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="4.31934" y="21.5386" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="8.63843" y="21.5386" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="12.9573" y="21.5386" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="17.2766" y="21.5386" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="21.5957" y="21.5386" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="4.31934" y="25.2307" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                    <rect x="8.63843" y="25.2307" width="3.08511" height="3.07692" rx="1" fill="#525252"/>
+                                </svg>
+                                <p class='ml-2'>Timetable</p>
+                            </div>
+                        </a>
+                        <a class="block text-third-light py-2.5 px-4 my-4 rounded transition duration-200 hover:text-white hover:bg-secondary-light" href="{{ url_for('todo') }}">
+                            <div class='flex flex-row items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="36" viewBox="0 0 29 36" fill="none" class='h-6 w-5'>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6229 0C8.88464 0 7.39428 1.0614 6.76457 2.57146H5C2.23858 2.57146 0 4.81003 0 7.57146V31C0 33.7615 2.23858 36 5 36H24C26.7614 36 29 33.7615 29 31V7.57146C29 4.81004 26.7614 2.57146 24 2.57146H22.2352C21.6055 1.0614 20.1151 0 18.3769 0H10.6229ZM5 5.57146H6.68212C7.25575 7.19439 8.80354 8.35714 10.6229 8.35714H18.3769C20.1962 8.35714 21.744 7.19439 22.3177 5.57146H24C25.1046 5.57146 26 6.46689 26 7.57146V31C26 32.1046 25.1046 33 24 33H5C3.89543 33 3 32.1046 3 31V7.57146C3 6.46689 3.89543 5.57146 5 5.57146ZM7.08885 15.0715C6.5728 15.0715 6.15552 14.6526 6.15552 14.143C6.15552 13.6333 6.5728 13.2144 7.08885 13.2144C7.6049 13.2144 8.02218 13.6333 8.02218 14.143C8.02218 14.6526 7.6049 15.0715 7.08885 15.0715ZM5.15552 14.143C5.15552 13.0778 6.02373 12.2144 7.08885 12.2144C8.15397 12.2144 9.02218 13.0778 9.02218 14.143C9.02218 15.2081 8.15397 16.0715 7.08885 16.0715C6.02373 16.0715 5.15552 15.2081 5.15552 14.143ZM15.727 12.8571H19.073H22.5587C23.2688 12.8571 23.8445 13.4327 23.8445 14.1428C23.8445 14.8529 23.2688 15.4285 22.5587 15.4285H19.073H15.727H12.2413C11.5312 15.4285 10.9556 14.8529 10.9556 14.1428C10.9556 13.4327 11.5312 12.8571 12.2413 12.8571H15.727ZM6.15552 19.9286C6.15552 20.4382 6.5728 20.8571 7.08885 20.8571C7.6049 20.8571 8.02218 20.4382 8.02218 19.9286C8.02218 19.4189 7.6049 19 7.08885 19C6.5728 19 6.15552 19.4189 6.15552 19.9286ZM7.08885 18C6.02373 18 5.15552 18.8635 5.15552 19.9286C5.15552 20.9937 6.02373 21.8571 7.08885 21.8571C8.15397 21.8571 9.02218 20.9937 9.02218 19.9286C9.02218 18.8635 8.15397 18 7.08885 18ZM15.727 18.6429H19.073H22.5587C23.2688 18.6429 23.8445 19.2186 23.8445 19.9286C23.8445 20.6387 23.2688 21.2143 22.5587 21.2143H19.073H15.727H12.2413C11.5312 21.2143 10.9556 20.6387 10.9556 19.9286C10.9556 19.2186 11.5312 18.6429 12.2413 18.6429H15.727ZM6.15552 25.7142C6.15552 26.2238 6.5728 26.6428 7.08885 26.6428C7.6049 26.6428 8.02218 26.2238 8.02218 25.7142C8.02218 25.2046 7.6049 24.7856 7.08885 24.7856C6.5728 24.7856 6.15552 25.2046 6.15552 25.7142ZM7.08885 23.7856C6.02373 23.7856 5.15552 24.6491 5.15552 25.7142C5.15552 26.7793 6.02373 27.6428 7.08885 27.6428C8.15397 27.6428 9.02218 26.7793 9.02218 25.7142C9.02218 24.6491 8.15397 23.7856 7.08885 23.7856ZM15.727 24.4285H19.073H22.5587C23.2688 24.4285 23.8445 25.0042 23.8445 25.7143C23.8445 26.4243 23.2688 27 22.5587 27H19.073H15.727H12.2413C11.5312 27 10.9556 26.4243 10.9556 25.7143C10.9556 25.0042 11.5312 24.4285 12.2413 24.4285H15.727Z" fill="#525252"/>
+                                </svg>
+                                <p class='ml-2'>To-Do</p>
+                            </div>
+                        </a>
+                        <a class="block text-third-light py-2.5 px-4 my-4 rounded transition duration-200 hover:text-white hover:bg-secondary-light" href="{{ url_for('video_finder') }}">
+                            <div class='flex flex-row items-center'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="29" height="24" viewBox="0 0 29 24" fill="none" class='h-6 w-5'>
+                                    <rect width="29" height="24" rx="5" fill="#525252"/>
+                                    <path d="M21.1621 12.0001L9.99319 17.5427L9.99319 6.45754L21.1621 12.0001Z" fill="#F4F1E8"/>
+                                </svg>
+                                <p class='ml-2'>Video Finder</p>
+                            </div>
+                        </a>
+                       
+                    </nav>
+    
+                    <!-- Setting -->
+                    <a class="block text-third-light py-2.5 px-4 my-4 rounded transition duration-200 hover:text-white hover:bg-secondary-light mt-auto" href="#">
+                        <div class='flex flex-row items-center'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none" class='h-6 w-5'>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.732 0H12.4286V5.92742C11.5571 6.12516 10.732 6.445 9.97223 6.868L5.28149 3.10706L2.58933 6.46481L6.76564 9.81328C6.23063 10.6068 5.81451 11.487 5.54282 12.4285H0V16.7319H5.33572C5.49003 17.5622 5.7544 18.3538 6.11311 19.091L2.07144 22.3536L4.77451 25.7022L8.83708 22.4227C9.88213 23.2231 11.1015 23.8073 12.4285 24.1084V29.0001H16.7319V24.0704C18.0333 23.7506 19.2272 23.1575 20.2494 22.3555L24.4129 25.6937L27.1049 22.3362L22.9341 18.9921C23.2687 18.2832 23.5166 17.5252 23.6641 16.7319H29V12.4285H23.457C23.1658 11.4194 22.7087 10.4807 22.1171 9.64377L26.0666 6.4556L23.3635 3.10706L18.8342 6.76332C18.176 6.417 17.4713 6.1471 16.732 5.96541V0ZM14.5 22.2679C18.5041 22.2679 21.75 19.022 21.75 15.0179C21.75 11.0139 18.5041 7.76793 14.5 7.76793C10.4959 7.76793 7.25 11.0139 7.25 15.0179C7.25 19.022 10.4959 22.2679 14.5 22.2679Z" fill="#525252"/>
+                              </svg>
+                            <p class='ml-2'>Setting</p>
+                        </div>
+                    </a>
+    
+                    <!-- Señalador de ubicación -->
+                    <div class="bg-third-light h-px mt-2"></div>
+    
+                    <!-- Copyright al final de la navegación lateral -->
+                    <p class="mb-1 px-5 py-3 text-left text-xs text-third-light">&copy; Copyright, Simplify 2024</p>
+                </div>
+    
+                <div class="flex-1 p-4 w-full md:w-1/2 bg-secondary-light">
+                    {% block content %}
+                        
+                    {% endblock content %}
+                </div>
+            </div>
+        </div>      
+        <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+    </body>
+</html>

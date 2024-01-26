@@ -10,6 +10,8 @@ This project is built using:
 - Node JS
 - PostgreSQL
 
+Note: Make sure you have [Node JS](https://nodejs.org/en/download) installed on your local machine in order to run the `npm` command.
+
 ## Getting Started
 
 Please follow the steps below in order to setup this project in your local machine
