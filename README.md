@@ -58,6 +58,8 @@ After your virtual environment is active, you will see `(env)` on the left-hand 
 pip install -r requirements.txt
 ```
 
+**NOTE: Make sure that everytime you run this project, you need the virtual environment to be active. You could know if your virtual environment is active or not through the `(env)` sign on your left-hand side of your terminal **
+
 ### Step 4 - Install Node JS dependencies
 
 Next, you will need to install Node js dependencies as well in order for the CSS framework (Tailwind) to work. You could install the node dependencies by running the command below:
