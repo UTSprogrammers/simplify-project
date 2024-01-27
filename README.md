@@ -58,7 +58,7 @@ After your virtual environment is active, you will see `(env)` on the left-hand 
 pip install -r requirements.txt
 ```
 
-**NOTE: Make sure that everytime you run this project, you need the virtual environment to be active. You could know if your virtual environment is active or not through the `(env)` sign on your left-hand side of your terminal **
+**NOTE: Make sure that everytime you run this project, you need the virtual environment to be active. You could know if your virtual environment is active or not through the `(env)` sign on your left-hand side of your terminal.**
 
 ### Step 4 - Install Node JS dependencies
 
