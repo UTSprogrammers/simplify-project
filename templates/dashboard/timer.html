@@ -1,9 +1,256 @@
-{% extends "dashboard.html" %}
+{% extends "dashboard.html" %} {% block title %} Timer | Simplify {% endblock
+title %} {% block content %}
+<style>
+  /* this is just whatever, dont need to stick to this css */
 
-{% block title %}
-Timer | Simplify
-{% endblock title %}
+  body {
+    background-color: rgba(161, 156, 136, 1);
+    margin: 0;
+    padding: 0;
+  }
 
-{% block content %}
-    <h1 class='text-4xl'>Timer Page</h1>
+  .container {
+    margin: 0 auto;
+    max-width: 1000px;
+    text-align: center;
+    padding: 150px;
+    font-family: Avenir;
+  }
+
+  .title {
+    font-size: 60px;
+    margin-bottom: 30px;
+    color: #f4f1e8;
+  }
+
+  .btn {
+    font-size: 25px;
+    font-weight: 900;
+    padding: 10px 20px;
+    margin: 10px;
+    color: #f4f1e8;
+    /* color: #f4f1e8; */
+
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .btn:hover {
+    opacity: 70%;
+  }
+
+  .timer {
+    font-size: 110px;
+    color: #f4f1e8;
+    padding: 20px 80px;
+    margin: 50px auto;
+    border-color: #f4f1e8;
+    border: 6px solid #f4f1e8;
+  }
+
+  .button {
+    font-size: 45px;
+    padding: 10px 15px;
+    margin: 5px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    max-width: fit-content;
+  }
+  button:hover {
+    opacity: 70%;
+  }
+</style>
+<script src="https://secure.exportkit.com/cdn/js/ek_googlefonts.js?v=6"></script>
+
+<script
+  src="https://kit.fontawesome.com/6f3103b13c.js"
+  crossorigin="anonymous"
+></script>
+</head>
+<body>
+<section>
+  <div class="container">
+    <h1 class="title">Pomodoro Timer</h1>
+    <div class="section-container">
+      <button id="work" class="btn">Focus</button>
+      <button id="break" class="btn">BreaK</button>
+    </div>
+
+    <p class="timer" id="timer">25 : 00</p>
+    <div class="button-wrapper">
+      <button class="button" id="start">
+        <i class="fa-solid fa-play"></i>
+      </button>
+      <button class="button" id="stop">
+        <i class="fa-solid fa-pause"></i>
+      </button>
+      <button class="button" id="reset">
+        <i class="fa-solid fa-arrow-rotate-left"></i>
+      </button>
+    </div>
+    <div class="button-wrapper">
+      <button class="button" id="breakStart">
+        <i class="fa-solid fa-play"></i>
+      </button>
+      <button class="button" id="breakStop">
+        <i class="fa-solid fa-pause"></i>
+      </button>
+      <button class="button" id="breakReset">
+        <i class="fa-solid fa-arrow-rotate-left"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // This is the main script file for the project.
+
+  const startElement = document.getElementById("start");
+  const stopElement = document.getElementById("stop");
+  const resetElement = document.getElementById("reset");
+
+  const breakStartElement = document.getElementById("breakStart");
+  const breakStopElement = document.getElementById("breakStop");
+  const breakResetElement = document.getElementById("breakReset");
+  const timerElement = document.getElementById("timer");
+
+  const breakElement = document.getElementById("break");
+  const workElement = document.getElementById("work");
+
+  let interval;
+  let timeLeft = 1500;
+
+  let breakInterval;
+  let breakTime = 300;
+
+  resetElement.style.display = "none";
+  stopElement.style.display = "none";
+  breakStartElement.style.display = "none";
+  breakStopElement.style.display = "none";
+  breakResetElement.style.display = "none";
+
+  function updateTimer(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    const formattedTime = `${minutes.toString().padStart(2, "0")} : ${seconds
+      .toString()
+      .padStart(2, "0")}`;
+    timerElement.innerHTML = formattedTime;
+  }
+
+  function startTimer() {
+    interval = setInterval(() => {
+      timeLeft--;
+      updateTimer(timeLeft);
+      if (timeLeft === 0) {
+        clearInterval(interval);
+        alert("Time's up!");
+        timeLeft = 1500;
+        updateTimer(timeLeft);
+      }
+    }, 1000);
+    startElement.style.display = "none";
+    resetElement.style.display = "inline-block";
+    breakElement.style.display = "none";
+    stopElement.style.display = "inline-block";
+  }
+
+  function stopTimer() {
+    clearInterval(interval);
+    startElement.style.display = "inline-block";
+    stopElement.style.display = "none";
+  }
+
+  function resetTimer() {
+    clearInterval(interval);
+    timeLeft = 1500;
+    updateTimer(timeLeft);
+    resetElement.style.display = "none";
+    startElement.style.display = "inline-block";
+    breakElement.style.display = "inline-block";
+  }
+
+  function updateBreakTimer(time) {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    const formattedTime = `${minutes.toString().padStart(2, "0")} : ${seconds
+      .toString()
+      .padStart(2, "0")}`;
+    timerElement.innerHTML = formattedTime;
+  }
+
+  function showWork() {
+    clearInterval(interval);
+    timeLeft = 1500;
+    updateTimer(timeLeft);
+    workElement.style.display = "inline-block";
+    breakStartElement.style.display = "none";
+    breakStopElement.style.display = "none";
+    breakResetElement.style.display = "none";
+    resetElement.style.display = "none";
+    startElement.style.display = "inline-block";
+    stopElement.style.display = "none";
+    breakElement.style.display = "inline-block";
+  }
+
+  function showBreak() {
+    clearInterval(interval);
+    breakTime = 300;
+    updateBreakTimer(breakTime);
+    breakStartElement.style.display = "inline-block";
+    breakStopElement.style.display = "none";
+    breakResetElement.style.display = "none";
+    resetElement.style.display = "none";
+    startElement.style.display = "none";
+    stopElement.style.display = "none";
+  }
+
+  function startBreak() {
+    console.log("Break started");
+    breakInterval = setInterval(() => {
+      breakTime--;
+      updateBreakTimer(breakTime);
+      if (breakTime === 0) {
+        clearInterval(breakInterval);
+        alert("Break's over!");
+        breakTime = 300;
+        updateBreakTimer(breakTime);
+      }
+    }, 1000);
+    workElement.style.display = "none";
+    breakStartElement.style.display = "none";
+    breakStopElement.style.display = "inline-block";
+    breakResetElement.style.display = "inline-block";
+  }
+
+  function stopBreak() {
+    clearInterval(breakInterval);
+    breakStartElement.style.display = "inline-block";
+    breakStopElement.style.display = "none";
+  }
+
+  function resetBreak() {
+    clearInterval(breakInterval);
+    breakTime = 300;
+    updateBreakTimer(breakTime);
+    workElement.style.display = "inline-block";
+  }
+
+  breakElement.addEventListener("click", showBreak);
+  workElement.addEventListener("click", showWork);
+  breakStartElement.addEventListener("click", startBreak);
+  breakStopElement.addEventListener("click", stopBreak);
+  breakResetElement.addEventListener("click", resetBreak);
+
+  startElement.addEventListener("click", startTimer);
+  stopElement.addEventListener("click", stopTimer);
+  resetElement.addEventListener("click", resetTimer);
+</script>
+
 {% endblock content %}
